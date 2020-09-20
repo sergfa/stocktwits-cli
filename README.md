@@ -12,11 +12,11 @@ Provides stock data by Stocktwits REST API
 # Usage
 <!-- usage -->
 ```sh-session
-$ npm install -g stocktwits-cli
+$ npm install -g @sfayman/stocktwits-cli
 $ stocktwits-cli COMMAND
 running command...
 $ stocktwits-cli (-v|--version|version)
-stocktwits-cli/0.0.1 darwin-x64 node-v13.12.0
+@sfayman/stocktwits-cli/0.0.1 darwin-x64 node-v13.12.0
 $ stocktwits-cli --help [COMMAND]
 USAGE
   $ stocktwits-cli COMMAND
