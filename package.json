@@ -1,5 +1,5 @@
 {
-  "name": "stocktwits-cli",
+  "name": "@sfayman/stocktwits-cli",
   "description": "Provides stock data by Stocktwits REST API",
   "version": "0.0.1",
   "author": "Sergey Fayman",
@@ -61,7 +61,6 @@
     "type": "git",
     "url": "https://github.com/sergfa/stocktwits-cli.git"
   },
-  "publishConfig": { "registry": "https://npm.pkg.github.com/" },
   "scripts": {
     "postpack": "rm -f oclif.manifest.json",
     "posttest": "eslint . --ext .ts --config .eslintrc",
