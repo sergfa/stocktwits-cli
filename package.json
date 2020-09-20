@@ -1,12 +1,12 @@
 {
   "name": "stocktwits-cli",
-  "description": "Provides stock data by stocktwits API",
+  "description": "Provides stock data by Stocktwits REST API",
   "version": "0.0.0",
   "author": "sfayman",
   "bin": {
     "stocktwits-cli": "./bin/run"
   },
-  "bugs": "https://github.com/projects/stocktwits-cli/issues",
+  "bugs": "https://github.com/sergfa/stocktwits-cli/issues",
   "dependencies": {
     "@oclif/command": "^1.8.0",
     "@oclif/config": "^1.17.0",
@@ -42,7 +42,7 @@
     "/npm-shrinkwrap.json",
     "/oclif.manifest.json"
   ],
-  "homepage": "https://github.com/projects/stocktwits-cli",
+  "homepage": "https://github.com/sergfa/stocktwits-cli",
   "keywords": [
     "stocktwits"
   ],
@@ -55,7 +55,7 @@
       "@oclif/plugin-help"
     ]
   },
-  "repository": "projects/stocktwits-cli",
+  "repository": "sergfa/stocktwits-cli",
   "scripts": {
     "postpack": "rm -f oclif.manifest.json",
     "posttest": "eslint . --ext .ts --config .eslintrc",

@@ -1,7 +1,7 @@
 stocktwits-cli
 =======
 
-Provides stock data by stockwits API
+Provides stock data by Stocktwits REST API
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
 
