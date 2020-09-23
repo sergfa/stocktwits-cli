@@ -53,8 +53,11 @@ export default class Streams extends Command {
     let body: string = he.decode(item.body);
     // replace all new lines
     body = body.replace(/[\r\n]+/g, ' ');
+    // replace tabs
+    //body = body.replace(/\t/g, ' ');
+    body = body.replace(/\s\s+/g, ' ');
     //  body = body.replace(/https?:\/\/\S+/g, '*url*');
     let steintment = item.entities?.sentiment?.basic || 'Unknown';
-    return [item.id, item.created_at, body, steintment].join('\t');
+    return [item.id, body, steintment].join('\t');
   };
 }
