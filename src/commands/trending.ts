@@ -6,13 +6,13 @@ import { Symbol } from '../models/common.model';
 import * as fs from 'fs';
 
 export default class Trending extends Command {
-  static description = 'Returns a list of all the trending symbols at the moment requested. These are updated in 5-minute intervals.';
+  static description = 'Returns a list of all the trending symbols or equities at the moment requested. These are updated in 5-minute intervals.';
 
   static examples = [
-    `$ stocktwits-cli trending symbols`,
+    `$ stocktwits-cli trending symbols # Returns a list of all the trending symbols at the moment requested. Trending symbols include equties and non-equities like futures and forex.`,
     `stocktwits-cli trending symbols --output results.txt`,
     `$ stocktwits-cli trending -d ';' symbols`,
-    `$ stocktwits-cli trending equities`
+    `$ stocktwits-cli trending equities # Returns a list of all the trending equity symbols at the moment requested. Trending equities have to have a price over $5.`
   ];
 
   static flags = {

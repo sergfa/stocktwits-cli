@@ -7,12 +7,13 @@ import * as fs from 'fs';
 const he = require('he');
 
 export default class Streams extends Command {
-  static description = 'Returns the most recent messages for the specified product.';
+  static description = `Returns the most recent  messages for the specified product in the following format: message id, created at, message body, sentiment: Bullish, Bearish, Unknown `;
 
   static examples = [
-    `$ stocktwits-cli streams symbol --data 'TSLA'`,
-    `$ stocktwits-cli streams trending`,
-    `$ stocktwits-cli streams trending --output results.txt`
+    '$ stocktwits-cli streams symbol --data TSLA # Returns the most recent 30 messages for the specified symbol.',
+    '$ stocktwits-cli streams user --data howardlindzon # Returns the most recent 30 messages for the specified user.',
+    '$ stocktwits-cli streams suggested # Returns the most recent 30 messages from our suggested users, a curated list of quality Stocktwits contributors.',
+    '$ stocktwits-cli streams trending # Returns a list of  messages of the trending 30 equities at the moment requested.'
   ];
 
   static flags = {
@@ -23,7 +24,12 @@ export default class Streams extends Command {
   };
 
   static args = [
-    { name: 'product', required: true, description: 'Supported products', options: [StreamsProductType.SYMBOL, StreamsProductType.TRENDING_EQUITIES] }
+    {
+      name: 'product',
+      required: true,
+      description: 'Supported products',
+      options: [StreamsProductType.SUGGESTED, StreamsProductType.SYMBOL, StreamsProductType.TRENDING_EQUITIES, StreamsProductType.USER]
+    }
   ];
 
   async run() {
@@ -57,7 +63,7 @@ export default class Streams extends Command {
     //body = body.replace(/\t/g, ' ');
     body = body.replace(/\s\s+/g, ' ');
     //  body = body.replace(/https?:\/\/\S+/g, '*url*');
-    let steintment = item.entities?.sentiment?.basic || 'Unknown';
-    return [item.id, body, steintment].join('\t');
+    let sentiment = item.entities?.sentiment?.basic || 'Unknown';
+    return [item.id, item.created_at, body, sentiment].join('\t');
   };
 }

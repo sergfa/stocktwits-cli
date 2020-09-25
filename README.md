@@ -16,7 +16,7 @@ $ npm install -g @sfayman/stocktwits-cli
 $ stocktwits-cli COMMAND
 running command...
 $ stocktwits-cli (-v|--version|version)
-@sfayman/stocktwits-cli/0.0.1 darwin-x64 node-v13.12.0
+@sfayman/stocktwits-cli/0.0.4 darwin-x64 node-v13.12.0
 $ stocktwits-cli --help [COMMAND]
 USAGE
   $ stocktwits-cli COMMAND
@@ -48,14 +48,14 @@ _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.2.0
 
 ## `stocktwits-cli streams PRODUCT`
 
-Returns the most recent messages for the specified product.
+Returns the most recent  messages for the specified product in the following format: message id, created at, message body, sentiment: Bullish, Bearish, Unknown
 
 ```
 USAGE
   $ stocktwits-cli streams PRODUCT
 
 ARGUMENTS
-  PRODUCT  (symbol|trending) Supported products
+  PRODUCT  (suggested|symbol|trending|user) Supported products
 
 OPTIONS
   -a, --data=data            [default: TSLA]
@@ -68,16 +68,18 @@ OPTIONS
   -o, --output=output        append output to file
 
 EXAMPLES
-  $ stocktwits-cli streams symbol --data 'TSLA'
-  $ stocktwits-cli streams trending
-  $ stocktwits-cli streams trending --output results.txt
+  $ stocktwits-cli streams symbol --data TSLA # Returns the most recent 30 messages for the specified symbol.
+  $ stocktwits-cli streams user --data howardlindzon # Returns the most recent 30 messages for the specified user.
+  $ stocktwits-cli streams suggested # Returns the most recent 30 messages from our suggested users, a curated list of 
+  quality Stocktwits contributors.
+  $ stocktwits-cli streams trending # Returns a list of  messages of the trending 30 equities at the moment requested.
 ```
 
-_See code: [src/commands/streams.ts](https://github.com/sergfa/stocktwits-cli/blob/v0.0.1/src/commands/streams.ts)_
+_See code: [src/commands/streams.ts](https://github.com/sergfa/stocktwits-cli/blob/v0.0.4/src/commands/streams.ts)_
 
 ## `stocktwits-cli trending PRODUCT`
 
-Returns a list of all the trending symbols at the moment requested. These are updated in 5-minute intervals.
+Returns a list of all the trending symbols or equities at the moment requested. These are updated in 5-minute intervals.
 
 ```
 USAGE
@@ -93,13 +95,15 @@ OPTIONS
   -o, --output=output        append output to file
 
 EXAMPLES
-  $ stocktwits-cli trending symbols
+  $ stocktwits-cli trending symbols # Returns a list of all the trending symbols at the moment requested. Trending 
+  symbols include equties and non-equities like futures and forex.
   stocktwits-cli trending symbols --output results.txt
   $ stocktwits-cli trending -d ';' symbols
-  $ stocktwits-cli trending equities
+  $ stocktwits-cli trending equities # Returns a list of all the trending equity symbols at the moment requested. 
+  Trending equities have to have a price over $5.
 ```
 
-_See code: [src/commands/trending.ts](https://github.com/sergfa/stocktwits-cli/blob/v0.0.1/src/commands/trending.ts)_
+_See code: [src/commands/trending.ts](https://github.com/sergfa/stocktwits-cli/blob/v0.0.4/src/commands/trending.ts)_
 <!-- commandsstop -->
 * [`stocktwits-cli help [COMMAND]`](#stocktwits-cli-help-command)
 

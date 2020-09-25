@@ -21,17 +21,37 @@ export class StockWitsDataProviderService {
     );
   }
 
-  getStreamsData(product: StreamsProductType, symbols: string[]): Observable<Message[]> {
+  getStreamsData(product: StreamsProductType, data: string[]): Observable<Message[]> {
     switch (product) {
       case StreamsProductType.TRENDING_EQUITIES:
         return this.getTrendingMessages(TrendingProductType.EQUITIES);
       case StreamsProductType.SYMBOL:
-        return this.getMessagesBySymbols(symbols);
+        return this.getMessagesBySymbols(data);
+      case StreamsProductType.USER:
+        return this.getMessagesByUser(data[0]);
+      case StreamsProductType.SUGGESTED:
+        return this.getMessagesBySuggestedUsers();
     }
   }
 
   private getMessagesBySymbol(symbol: string): Observable<Message[]> {
     const prodURL = `/streams/symbol/${symbol}.json`;
+    return from(axios.get(`${BASE_URL}${prodURL}`)).pipe(
+      switchMap((response) => this.handleResponse(response)),
+      map((response) => (<StreamsResponseData>response).messages)
+    );
+  }
+
+  private getMessagesByUser(id: string): Observable<Message[]> {
+    const prodURL = `/streams/user/${id}.json`;
+    return from(axios.get(`${BASE_URL}${prodURL}`)).pipe(
+      switchMap((response) => this.handleResponse(response)),
+      map((response) => (<StreamsResponseData>response).messages)
+    );
+  }
+
+  private getMessagesBySuggestedUsers(): Observable<Message[]> {
+    const prodURL = `/streams/suggested.json`;
     return from(axios.get(`${BASE_URL}${prodURL}`)).pipe(
       switchMap((response) => this.handleResponse(response)),
       map((response) => (<StreamsResponseData>response).messages)
